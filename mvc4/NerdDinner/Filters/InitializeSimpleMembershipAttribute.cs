@@ -37,8 +37,8 @@ namespace NerdDinner.Filters
                             ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
                         }
                     }
-
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    
+                    WebSecurity.InitializeDatabaseConnection(Env.AuthDbConnectionString, "System.Data.SqlClient", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

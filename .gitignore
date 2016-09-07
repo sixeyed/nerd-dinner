@@ -261,7 +261,9 @@ __pycache__/
 
 
 # published output
-
 docker/web/NerdDinner/
 *.dacpac
 *.dbmdl
+
+# secrets
+*.env

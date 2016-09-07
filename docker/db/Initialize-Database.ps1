@@ -21,12 +21,12 @@ if ($sa_password -ne "_") {
 # attach data files if they exist: 
 $mdfPath = "c:\database\${db_name}_Primary.mdf"
 if ((Test-Path $mdfPath) -eq $true) {
-    $sqlcmd = "CREATE DATABASE ${db_name} ON (FILENAME = N'$mdfPath')"
+    $sqlcmd = "IF DB_ID('${db_name}') IS NULL BEGIN CREATE DATABASE ${db_name} ON (FILENAME = N'$mdfPath')"
     $ldfPath = "c:\database\${db_name}_Primary.ldf"
     if ((Test-Path $mdfPath) -eq $true) {
         $sqlcmd =  "$sqlcmd, (FILENAME = N'$ldfPath')"
     }
-    $sqlcmd = "$sqlcmd FOR ATTACH;"
+    $sqlcmd = "$sqlcmd FOR ATTACH; END"
     Write-Verbose "Invoke-Sqlcmd -Query $($sqlcmd) -ServerInstance '.\SQLEXPRESS'"
     Invoke-Sqlcmd -Query $sqlcmd -ServerInstance ".\SQLEXPRESS"
 }

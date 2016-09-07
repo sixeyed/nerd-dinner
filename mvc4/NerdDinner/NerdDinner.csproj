@@ -187,6 +187,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RSVPController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Env.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -277,9 +278,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
-    <None Include="Properties\PublishProfiles\docker.pubxml" />
+    <Content Include="Global.asax" />    
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <Content Include="README.md" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />

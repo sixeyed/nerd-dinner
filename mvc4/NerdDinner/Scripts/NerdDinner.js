@@ -81,7 +81,7 @@ NerdDinner._ZoomMap = function(result) {
     }
 }
 NerdDinner._callbackForLocation = function (result) {
-    _ZoomMap(result);
+    NerdDinner._ZoomMap(result);
 
     if (result &&
            result.resourceSets &&

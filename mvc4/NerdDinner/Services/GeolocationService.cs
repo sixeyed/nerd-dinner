@@ -45,7 +45,7 @@ namespace NerdDinner.Services
                 //return string.Empty;
             }
 
-            string apiKey = System.Configuration.ConfigurationManager.AppSettings["ipInfoDbKey"];
+            string apiKey = Env.IpInfoDbKey;
             string url = "http://api.ipinfodb.com/v3/ip-city/?ip={0}&key=" + apiKey;
             //string url = "http://ipinfodb.com/ip_query.php?ip={0}&timezone=false";
             url = String.Format(url, ip);

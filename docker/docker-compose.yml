@@ -1,25 +1,23 @@
 version: '2'
 services:
 
-  db:
-    image: nerd-dinner-db
+  nerd-dinner-db:
+    image: sixeyed/nerd-dinner-db:part2
     ports:
       - "1433:1433"
     networks:
-      nd:
-        ipv4_address: 172.24.199.213
+      - nd
 
-  web:
-    image: nerd-dinner-web
+  nerd-dinner-web:
+    image: sixeyed/nerd-dinner:part2
     ports:
       - "8081:8081"
-    links:
-      - db:nerd-dinner-db
+    env_file:
+      - web-variables.env
     depends_on:
-      - db
+      - nerd-dinner-db
     networks:
-      nd:
-        ipv4_address: 172.24.207.163
+      - nd
 
 networks:
   nd:

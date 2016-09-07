@@ -8,7 +8,6 @@ EXPOSE 1433
 VOLUME c:\\database
 ENV sa_password N3rdD!Nne720^6
 
-#RUN md c:\init
 WORKDIR c:\\init
 COPY . .
 

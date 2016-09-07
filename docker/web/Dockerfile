@@ -12,7 +12,6 @@ RUN Install-WindowsFeature NET-Framework-45-ASPNET; `
 EXPOSE 8081
 RUN Remove-Website -Name 'Default Web Site'; `
     md c:\nerd-dinner; `
-    md c:\databases; `
     New-Website -Name 'nerd-dinner' `
                 -Port 8081 -PhysicalPath 'c:\nerd-dinner' `
                 -ApplicationPool '.NET v4.5'
@@ -28,4 +27,15 @@ RUN & c:\windows\system32\inetsrv\appcmd.exe `
       unlock config `
       /section:system.webServer/handlers
 
+# REMARK: Temporary workaround for Windows DNS client weirdness
+RUN set-itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord
+
+ENV BING_MAPS_KEY `
+    IP_INFO_DB_KEY `
+    AUTH_DB_CONNECTION_STRING="Data Source=nerd-dinner-db,1433;Initial Catalog=NerdDinner;User Id=sa;Password=N3rdD!Nne720^6;" `
+    APP_DB_CONNECTION_STRING="Data Source=nerd-dinner-db,1433;Initial Catalog=NerdDinner;User Id=sa;Password=N3rdD!Nne720^6;MultipleActiveResultSets=True;"
+
 COPY NerdDinner c:\nerd-dinner
+COPY bootstrap.ps1 \
+
+ENTRYPOINT ./bootstrap.ps1

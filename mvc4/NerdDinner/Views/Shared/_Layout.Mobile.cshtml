@@ -14,8 +14,8 @@
     <script type="text/javascript" src="~/Scripts/NerdDinner.js"></script>
 
     <script type="text/javascript">
-        NerdDinner.ipInfoDbKey = '@System.Configuration.ConfigurationManager.AppSettings["ipInfoDbKey"]';
-        NerdDinner.BingMapsKey = '@System.Configuration.ConfigurationManager.AppSettings["BingMapsKey"]';
+        NerdDinner.ipInfoDbKey = '@NerdDinner.Env.IpInfoDbKey';
+        NerdDinner.BingMapsKey = '@NerdDinner.Env.BingMapsKey';
     </script>
 </head>
 <body>
