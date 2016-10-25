@@ -8,11 +8,6 @@ SHELL ["powershell", "-command"]
 RUN Install-WindowsFeature NET-Framework-45-ASPNET; `
     Install-WindowsFeature Web-Asp-Net45
 
-# Install SQL Server LocalDB
-RUN Invoke-WebRequest -OutFile c:\SqlLocalDB.msi -Uri http://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SqlLocalDB.MSI
-RUN ["cmd", "/S", "/C", "c:\\windows\\syswow64\\msiexec", "/i", "c:\\SqlLocalDB.msi", "IACCEPTSQLLOCALDBLICENSETERMS=YES", "/qn"]
-RUN & 'C:\Program Files\Microsoft SQL Server\110\Tools\Binn\sqllocaldb' start "v11.0"
-
 # Configure website
 EXPOSE 8081
 RUN Remove-Website -Name 'Default Web Site'; `
@@ -22,6 +17,7 @@ RUN Remove-Website -Name 'Default Web Site'; `
                 -Port 8081 -PhysicalPath 'c:\nerd-dinner' `
                 -ApplicationPool '.NET v4.5'
 
+# check if needed
 # Setup app pool for LocalDB access
 RUN Import-Module WebAdministration; `
     Set-ItemProperty 'IIS:\AppPools\.NET v4.5' -Name 'processModel.loadUserProfile' -Value 'True'; `
