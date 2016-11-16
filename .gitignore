@@ -262,6 +262,6 @@ __pycache__/
 
 # published output
 
-docker/web/website/
+docker/web/NerdDinner/
 *.dacpac
 *.dbmdl

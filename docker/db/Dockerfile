@@ -1,11 +1,15 @@
 # escape=`
 
-FROM microsoft/mssql-server-2016-express-windows:windowsservercore-10.0.14393.206
+FROM microsoft/mssql-server-2016-express-windows
 MAINTAINER Elton Stoneman <elton@sixeyed.com>
-SHELL ["powershell", "-command"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
-VOLUME c:\databases
+EXPOSE 1433
+VOLUME c:\\database
+ENV sa_password N3rdD!Nne720^6
 
-WORKDIR c:/nerd-dinner
-COPY NerdDinner.Database.dacpac .
-COPY Initialize-Database.ps1 .
+#RUN md c:\init
+WORKDIR c:\\init
+COPY . .
+
+CMD ./Initialize-Database.ps1 -sa_password $env:sa_password -db_name NerdDinner -Verbose

@@ -1,8 +1,8 @@
 # escape=`
 
-FROM microsoft/iis:10.0.14393.206
+FROM microsoft/iis
 MAINTAINER Elton Stoneman <elton@sixeyed.com>
-SHELL ["powershell", "-command"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 # Install ASP.NET
 RUN Install-WindowsFeature NET-Framework-45-ASPNET; `
@@ -28,4 +28,4 @@ RUN & c:\windows\system32\inetsrv\appcmd.exe `
       unlock config `
       /section:system.webServer/handlers
 
-COPY nerd-dinner c:\nerd-dinner
+COPY NerdDinner c:\nerd-dinner

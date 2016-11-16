@@ -1,0 +1,27 @@
+version: '2'
+services:
+
+  db:
+    image: nerd-dinner-db
+    ports:
+      - "1433:1433"
+    networks:
+      nd:
+        ipv4_address: 172.24.199.213
+
+  web:
+    image: nerd-dinner-web
+    ports:
+      - "8081:8081"
+    links:
+      - db:nerd-dinner-db
+    depends_on:
+      - db
+    networks:
+      nd:
+        ipv4_address: 172.24.207.163
+
+networks:
+  nd:
+    external:
+      name: nat
