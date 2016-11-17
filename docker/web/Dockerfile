@@ -32,8 +32,8 @@ RUN set-itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Par
 
 ENV BING_MAPS_KEY `
     IP_INFO_DB_KEY `
-    AUTH_DB_CONNECTION_STRING="Data Source=nerd-dinner-db,1433;Initial Catalog=NerdDinner;User Id=sa;Password=N3rdD!Nne720^6;" `
-    APP_DB_CONNECTION_STRING="Data Source=nerd-dinner-db,1433;Initial Catalog=NerdDinner;User Id=sa;Password=N3rdD!Nne720^6;MultipleActiveResultSets=True;"
+    AUTH_DB_CONNECTION_STRING `
+    APP_DB_CONNECTION_STRING
 
 COPY NerdDinner c:\nerd-dinner
 COPY bootstrap.ps1 \

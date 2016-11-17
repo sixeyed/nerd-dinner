@@ -9,11 +9,12 @@ services:
       - nd
 
   nerd-dinner-web:
-    image: sixeyed/nerd-dinner:part2
+    image: sixeyed/nerd-dinner-web:part2
     ports:
       - "8081:8081"
     env_file:
-      - web-variables.env
+      - connection-strings.env
+      - secrets.env
     depends_on:
       - nerd-dinner-db
     networks:
